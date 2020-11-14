@@ -5,22 +5,28 @@ import {BrowserRouter as Router , Route , Switch } from 'react-router-dom'
 import Dashboard from "./Dashboard"
 import Login from "./Login"
 import Signup from "./Signup"
-
+import PrivateRoute from "./PrivateRoute"
+import ForgotPassword from "./ForgotPassword"
+import UpdateProfile from "./UpdateProfile"
+import RedirectPrivateRoute from "./RedirectPrivateRoute"
 
 function App() {
   return (
     <AuthProvider>
-        <Container className="d-flex align-tems-center m-top-10
+        <Container className="d-flex align-items-center m-top-10
         justify-content-center" style={{minHeight:"100vh"}}>
           <div className="w-100" style={{maxWidth:"400px"}}>
-            <AuthProvider>
-              <Switch>
-                <Route exact path="/" component={Dashboard}/>
-                <Route exact path="/" component={Login}/>
-                <Route exact path="/" component={Signup}/>
-              </Switch>
-            </AuthProvider>
-            <Signup/>
+              <Router>
+                <AuthProvider>
+                  <Switch>
+                    <PrivateRoute exact path="/" component={Dashboard}/>
+                    <PrivateRoute path="/update-profile" component={UpdateProfile}/>
+                    <RedirectPrivateRoute path="/login" component={Login}/>
+                    <RedirectPrivateRoute path="/signup" component={Signup}/>
+                    <RedirectPrivateRoute path="/forgot-password" component={ForgotPassword}/>
+                  </Switch>
+                </AuthProvider>
+              </Router>
           </div>
         </Container>
     </AuthProvider>
