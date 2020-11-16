@@ -11,7 +11,6 @@ export default function Dashboard() {
     async function handleLogout(){
         setError('')
         try{
-            console.log(JSON.stringify(currentUser))
                 await logout()
                 history.pushState("/login")
         }

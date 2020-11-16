@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute"
 import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
 import RedirectPrivateRoute from "./RedirectPrivateRoute"
+import VerifyPass from "./VerifyPass"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                     <RedirectPrivateRoute path="/login" component={Login}/>
                     <RedirectPrivateRoute path="/signup" component={Signup}/>
                     <RedirectPrivateRoute path="/forgot-password" component={ForgotPassword}/>
+                    <RedirectPrivateRoute path="/verify" component={VerifyPass}/>
                   </Switch>
                 </AuthProvider>
               </Router>

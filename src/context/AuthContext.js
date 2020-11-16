@@ -25,7 +25,8 @@ export function AuthProvider({ children }) {
   }
 
   function resetPassword(email){
-    return auth.sendPasswordResetEmail(email)
+    auth.sendPasswordResetEmail("domoka2518@aalyaa.com").then(response=>
+      console.log(response))
   }
 
   function updateEmail(email){

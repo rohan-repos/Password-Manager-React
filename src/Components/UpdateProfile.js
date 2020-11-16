@@ -49,6 +49,7 @@ export default function UpdateProfile() {
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" ref={emailRef} 
                 required defaultValue={currentUser.email}/>
+                {/* <p onClick={} class="btn btn-primary stretched-link">Go somewhere</p> */}
               </Form.Group>
               <Form.Group id="password">
                 <Form.Label>Password</Form.Label>
