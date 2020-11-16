@@ -1,40 +1,46 @@
-import React, { useContext, useState, useEffect } from "react";
-import {auth} from "../firebase";
+import React, { useContext, useState, useEffect } from "react"
+import { auth } from "../firebase"
 
-const AuthContext = React.createContext();
+const AuthContext = React.createContext()
 
 export function useAuth() {
-  return useContext(AuthContext);
+  return useContext(AuthContext)
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
-  const [loading,setLoading] = useState(true);
-
+  const [currentUser, setCurrentUser] = useState()
+  const [loading, setLoading] = useState(true)
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
   }
 
-  function login(email,password){
-    return auth.signInWithEmailAndPassword(email,password)
+  function login(email, password) {
+    return auth.signInWithEmailAndPassword(email, password)
   }
 
-  function logout(){
+  function logout() {
     return auth.signOut()
   }
 
-  function resetPassword(email){
-    auth.sendPasswordResetEmail("domoka2518@aalyaa.com").then(response=>
-      console.log(response))
+  function resetPassword(email) {
+    return auth.sendPasswordResetEmail(email)
   }
 
-  function updateEmail(email){
+  function updateEmail(email) {
     return currentUser.updateEmail(email)
   }
 
-  function updatePassword(password){
+  function updatePassword(password) {
     return currentUser.updatePassword(password)
+  }
+
+  function verifyPassword(code){
+    return auth.verifyPasswordResetCode(code)
+  }
+
+  function confirmPassword(code,newPass){
+    return auth.confirmPasswordReset(code,newPass)
   }
 
   useEffect(() => {
@@ -52,7 +58,9 @@ export function AuthProvider({ children }) {
     logout,
     resetPassword,
     updateEmail,
-    updatePassword
+    updatePassword,
+    verifyPassword,
+    confirmPassword
   };
   return (
     <AuthContext.Provider value={value}>

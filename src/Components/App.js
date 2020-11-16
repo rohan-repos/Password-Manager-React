@@ -10,6 +10,7 @@ import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
 import RedirectPrivateRoute from "./RedirectPrivateRoute"
 import VerifyPass from "./VerifyPass"
+import ResetPassword from "./ResetPassword"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
                     <RedirectPrivateRoute path="/signup" component={Signup}/>
                     <RedirectPrivateRoute path="/forgot-password" component={ForgotPassword}/>
                     <RedirectPrivateRoute path="/verify" component={VerifyPass}/>
+                    <RedirectPrivateRoute path="/reset-password" component={ResetPassword}/>
                   </Switch>
                 </AuthProvider>
               </Router>
