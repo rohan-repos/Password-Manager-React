@@ -13,11 +13,12 @@ export default function VerifyPass() {
     const [loading,setLoading]=useState(false)
     const search = (window.location.search)
     // console.log(queryString.parse(search))
-    const {oobCode} = queryString.parse(search)
+    const {oobCode,mode} = queryString.parse(search)
     const history = useHistory()
     console.log(oobCode)
 
     useEffect(() => {
+        if(mode==='resetPassword')
         setError("")
             setLoading(true)
 
@@ -40,6 +41,9 @@ export default function VerifyPass() {
             .finally(()=>{
                 setLoading(false)
             })
+            // else if(mode==='verifyEmail'){
+
+            // }
     }, [])
 
     // function handleClick(e){

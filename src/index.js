@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './Components/App';
 import "bootstrap/dist/css/bootstrap.min.css"
+// import "jquery/3.5.1/jquery.min.js"
 
 ReactDOM.render(
   <React.StrictMode>

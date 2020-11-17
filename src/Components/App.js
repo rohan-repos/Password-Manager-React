@@ -1,5 +1,5 @@
 import React from "react"
-import {Container} from "react-bootstrap"
+import {Container, Navbar,Nav} from "react-bootstrap"
 import {AuthProvider} from '../context/AuthContext'
 import {BrowserRouter as Router , Route , Switch } from 'react-router-dom'
 import Dashboard from "./Dashboard"
@@ -11,18 +11,23 @@ import UpdateProfile from "./UpdateProfile"
 import RedirectPrivateRoute from "./RedirectPrivateRoute"
 import VerifyPass from "./VerifyPass"
 import ResetPassword from "./ResetPassword"
+import HomePage from "./HomePage"
+import "./App.css"
 
 function App() {
   return (
+    <>
     <AuthProvider>
-        <Container className="d-flex align-items-center m-top-10
-        justify-content-center" style={{minHeight:"100vh"}}>
-          <div className="w-100" style={{maxWidth:"400px"}}>
+        <Container style={{margin:0,padding:0,maxWidth:"100%"}}>
+          {/* className="d-flex align-items-center m-top-10
+        justify-content-center" style={{minHeight:"100vh"}}> */}
+          <div >
               <Router>
                 <AuthProvider>
                   <Switch>
-                    <PrivateRoute exact path="/" component={Dashboard}/>
+                    <PrivateRoute exact path="/home" component={Dashboard}/>
                     <PrivateRoute path="/update-profile" component={UpdateProfile}/>
+                    <RedirectPrivateRoute exact path="/" component={HomePage}/>
                     <RedirectPrivateRoute path="/login" component={Login}/>
                     <RedirectPrivateRoute path="/signup" component={Signup}/>
                     <RedirectPrivateRoute path="/forgot-password" component={ForgotPassword}/>
@@ -34,6 +39,7 @@ function App() {
           </div>
         </Container>
     </AuthProvider>
+    </>
   );
 }
 

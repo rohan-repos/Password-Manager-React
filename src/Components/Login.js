@@ -18,7 +18,7 @@ export default function Login() {
       setError("")
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
-      history.push("/")
+      history.push("/home")
     } catch {
       setError("Failed to log in")
     }
@@ -28,8 +28,9 @@ export default function Login() {
 
   return (
     <>
-      <Card>
-        <Card.Body>
+      <Card className="d-flex align-items-center m-top-10
+        justify-content-center">
+        <Card.Body className="w-100" style={{maxWidth:"400px"}}>
           <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>

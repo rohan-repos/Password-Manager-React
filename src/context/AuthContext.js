@@ -43,6 +43,10 @@ export function AuthProvider({ children }) {
     return auth.confirmPasswordReset(code,newPass)
   }
 
+  function verifyEmail(){
+    return currentUser.sendEmailVerification()
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -60,7 +64,8 @@ export function AuthProvider({ children }) {
     updateEmail,
     updatePassword,
     verifyPassword,
-    confirmPassword
+    confirmPassword,
+    verifyEmail
   };
   return (
     <AuthContext.Provider value={value}>
