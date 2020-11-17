@@ -1,5 +1,5 @@
 import React from "react"
-import {Container, Navbar,Nav} from "react-bootstrap"
+import {Container} from "react-bootstrap"
 import {AuthProvider} from '../context/AuthContext'
 import {BrowserRouter as Router , Route , Switch } from 'react-router-dom'
 import Dashboard from "./Dashboard"
@@ -12,7 +12,9 @@ import RedirectPrivateRoute from "./RedirectPrivateRoute"
 import VerifyPass from "./VerifyPass"
 import ResetPassword from "./ResetPassword"
 import HomePage from "./HomePage"
+import HomePage2 from "./HomePage2"
 import "./App.css"
+import Navbar from "./pages/Navbar"
 
 function App() {
   return (
@@ -23,11 +25,13 @@ function App() {
         justify-content-center" style={{minHeight:"100vh"}}> */}
           <div >
               <Router>
+              <Navbar/>
                 <AuthProvider>
+                  
                   <Switch>
                     <PrivateRoute exact path="/home" component={Dashboard}/>
                     <PrivateRoute path="/update-profile" component={UpdateProfile}/>
-                    <RedirectPrivateRoute exact path="/" component={HomePage}/>
+                    <RedirectPrivateRoute exact path="/" component={HomePage2}/>
                     <RedirectPrivateRoute path="/login" component={Login}/>
                     <RedirectPrivateRoute path="/signup" component={Signup}/>
                     <RedirectPrivateRoute path="/forgot-password" component={ForgotPassword}/>
