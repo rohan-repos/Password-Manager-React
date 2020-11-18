@@ -26,11 +26,18 @@ export default function Login() {
     setLoading(false)
   }
 
+  const contStyle={
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+    minHeight:"100vh"
+  }
+
   return (
-    <>
-      <Card className="d-flex align-items-center m-top-10
-        justify-content-center">
-        <Card.Body className="w-100" style={{maxWidth:"400px"}}>
+    <div style={contStyle}>
+      <div>
+      <Card style={{maxWidth:"400"}}>
+        <Card.Body>
           <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
@@ -54,6 +61,7 @@ export default function Login() {
       <div className="w-100 text-center mt-2">
         Need an account? <Link to="/signup">Sign Up</Link>
       </div>
-    </>
+      </div>
+    </div>
   )
 }

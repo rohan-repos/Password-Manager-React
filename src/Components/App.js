@@ -11,27 +11,33 @@ import UpdateProfile from "./UpdateProfile"
 import RedirectPrivateRoute from "./RedirectPrivateRoute"
 import VerifyPass from "./VerifyPass"
 import ResetPassword from "./ResetPassword"
-import HomePage from "./HomePage"
-import HomePage2 from "./HomePage2"
 import "./App.css"
 import Navbar from "./pages/Navbar"
+import Home from "./pages/HomePage/Home"
+import Footer from "./pages/Footer/Footer"
+import Services from "./pages/Services/Services"
+import Products from "./pages/Products/Products"
 
 function App() {
   return (
     <>
-    <AuthProvider>
-        <Container style={{margin:0,padding:0,maxWidth:"100%"}}>
+   
+        
           {/* className="d-flex align-items-center m-top-10
         justify-content-center" style={{minHeight:"100vh"}}> */}
           <div >
               <Router>
-              <Navbar/>
+                <Navbar/>
+                <div className="custom-container" styles={{margin:"0px",padding:"0px",minWidth:"100%"}}>
+        <div >
                 <AuthProvider>
-                  
                   <Switch>
                     <PrivateRoute exact path="/home" component={Dashboard}/>
                     <PrivateRoute path="/update-profile" component={UpdateProfile}/>
-                    <RedirectPrivateRoute exact path="/" component={HomePage2}/>
+                    <RedirectPrivateRoute exact path="/" component={Home}/>
+                    <RedirectPrivateRoute exact path="/services" component={Services}/>
+                    <RedirectPrivateRoute exact path="/products" component={Products}/>
+                    <RedirectPrivateRoute exact path="/" component={Home}/>
                     <RedirectPrivateRoute path="/login" component={Login}/>
                     <RedirectPrivateRoute path="/signup" component={Signup}/>
                     <RedirectPrivateRoute path="/forgot-password" component={ForgotPassword}/>
@@ -39,10 +45,14 @@ function App() {
                     <RedirectPrivateRoute path="/reset-password" component={ResetPassword}/>
                   </Switch>
                 </AuthProvider>
+                </div>
+                </div>
+                <Footer/>
               </Router>
+
           </div>
-        </Container>
-    </AuthProvider>
+        
+
     </>
   );
 }

@@ -30,9 +30,16 @@ export default function ResetPassword(props) {
   
       setLoading(false)
     }
+    const contStyle={
+      display:"flex",
+      alignItems:"center",
+      justifyContent:"center",
+      minHeight:"100vh"
+    }
 
     return (
-      <>
+      <div style={contStyle}>
+        <div>
         <Card>
           <Card.Body>
             <h2 className="text-center mb-4">Reset Password</h2>
@@ -56,7 +63,7 @@ export default function ResetPassword(props) {
                 </div>        
           </Card.Body>
         </Card>
-       
-      </>
+       </div>
+      </div>
     )
   }

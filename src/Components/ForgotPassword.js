@@ -26,8 +26,15 @@ export default function ForgotPassword() {
     setLoading(false)
   }
 
+  const contStyle={
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+    minHeight:"100vh"
+  }
   return (
-    <>
+    <div style={contStyle}>
+      <div>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Password Reset</h2>
@@ -50,6 +57,7 @@ export default function ForgotPassword() {
       <div className="w-100 text-center mt-2">
         Need an account? <Link to="/signup">Sign Up</Link>
       </div>
-    </>
+      </div>
+    </div>
   )
 }

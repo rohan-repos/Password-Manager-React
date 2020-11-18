@@ -24,11 +24,17 @@ export default function Dashboard() {
       setError("Failed to log out")
     }
   }
-
+  const contStyle={
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+    minHeight:"100vh"
+  }
   if(!currentUser.emailVerified)
   {
   return (
-    <>
+    <div style={contStyle}>
+    <div>
       <Card>
         <Card.Body>
         <p>Befire verifivation</p>
@@ -47,12 +53,14 @@ export default function Dashboard() {
           Log Out
         </Button>
       </div>
-    </>
+      </div>
+    </div>
   )
   }
   else{
     return(
-      <>
+      <div style={contStyle}>
+      <div>
       <Card>
         <Card.Body>
         <p>after verifivation</p>
@@ -70,7 +78,8 @@ export default function Dashboard() {
           Log Out
         </Button>
       </div>
-    </>
+      </div>
+    </div>
     )
   }
 }
