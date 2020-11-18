@@ -15,8 +15,7 @@ import "./App.css"
 import Navbar from "./pages/Navbar"
 import Home from "./pages/HomePage/Home"
 import Footer from "./pages/Footer/Footer"
-import Services from "./pages/Services/Services"
-import Products from "./pages/Products/Products"
+import Main from "./passwordgenerator/Main"
 
 function App() {
   return (
@@ -35,9 +34,7 @@ function App() {
                     <PrivateRoute exact path="/home" component={Dashboard}/>
                     <PrivateRoute path="/update-profile" component={UpdateProfile}/>
                     <RedirectPrivateRoute exact path="/" component={Home}/>
-                    <RedirectPrivateRoute exact path="/services" component={Services}/>
-                    <RedirectPrivateRoute exact path="/products" component={Products}/>
-                    <RedirectPrivateRoute exact path="/" component={Home}/>
+                    <RedirectPrivateRoute path="/password-generator" component={Main}/>
                     <RedirectPrivateRoute path="/login" component={Login}/>
                     <RedirectPrivateRoute path="/signup" component={Signup}/>
                     <RedirectPrivateRoute path="/forgot-password" component={ForgotPassword}/>
