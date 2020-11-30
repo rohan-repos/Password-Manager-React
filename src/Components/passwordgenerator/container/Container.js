@@ -127,7 +127,7 @@ const Container = props => {
         setRange(length);
     }
 
-    // useMemo(updateCheckBoxes, [type]);
+    useMemo(updateCheckBoxes, [type]);
 
     const passwordGenerated = (checkbox, rangeValue) => {
         const pwd = rangeValue > 3 ? generatePassword(checkbox, rangeValue) : generatePassword(checkbox, 3);
