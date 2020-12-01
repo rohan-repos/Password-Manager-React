@@ -102,8 +102,10 @@ export default function Dashboard() {
   }
 
   function handleDelete(docId) {
-    deleteCollectionData(docId).then(() => console.log("delete complete"));
+    if(currentUser){
+    deleteCollectionData(currentUser.uid,docId).then(() => console.log("delete complete"));
     handleDelClose()
+    }
   }
 
   // const handleGetData = (() => {
@@ -130,9 +132,13 @@ export default function Dashboard() {
   // });
 
   useEffect(() => {
-    const dbRef= getCollectionData()
+    
+    if(currentUser){
+    const dbRef= getCollectionData(currentUser.uid)
     dbRef.onSnapshot((snapshot) => {
       setCoData(snapshot.docs);
+      // console.log("gere")
+      // console.log(snapshot.docs)
       setArrLength(+snapshot.docs.length);
       
       if (tablePassRef.current.length !== arrLength) {
@@ -148,7 +154,9 @@ export default function Dashboard() {
       }
       // console.log(showPass);
     });
+  }
   }, [arrLength, getCollectionData]);
+  
 
   // console.log(coData)
   // return(

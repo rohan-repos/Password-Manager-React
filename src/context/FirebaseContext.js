@@ -15,19 +15,19 @@ export function FirestoreProvider({ children }) {
   // const [currentFirestore,setCurrentFirestore]
 
   function getCollectionData(userId){
-    return firestore.collection('userData').doc(userId)
+    return firestore.collection('userData').doc(userId).collection("userDetails")
 }
 
 function addCollectionData(userDetails,userId){
-  return firestore.collection('userData').doc(userId).add(userDetails)
+  return firestore.collection('userData').doc(userId).collection("userDetails").add(userDetails)
 }
 
-function deleteCollectionData(docId){
-  return firestore.collection('userData').doc(docId).delete()
+function deleteCollectionData(userId,docId){
+  return firestore.collection('userData').doc(userId).collection("userDetails").doc(docId).delete()
 }
 
 function createUserData(userId,secQuestionData){
-  return firestore.collection('users').doc(userId).set(
+  return firestore.collection('userData').doc(userId).collection("securityQuestions").add(
       secQuestionData
   )
 }
