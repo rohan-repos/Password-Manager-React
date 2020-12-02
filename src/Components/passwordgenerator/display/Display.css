@@ -68,16 +68,18 @@
 .copy-btn {
     border: none;
     background: none;
-    font-size: 25px;
+    font-size: 30px;
     color: white;
     outline: none !important;
+    padding-right: 10px;
 }
 
 .generate-btn {
     border: none;
     background: none;
-    font-size: 25px;
+    font-size: 30px;
     color: white;
     outline: none !important;
+    padding-left: 10px;
 }
 

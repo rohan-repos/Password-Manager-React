@@ -2,8 +2,11 @@ import React, { useState, useRef } from 'react';
 
 import './Display.css';
 import { Container } from '../container/Container';
-import Button from '../container/button/Button';
+// import Button from '../container/button/Button';
+import {Button} from "react-bootstrap"
 import Tooltip from '../container/tooltip/Tooltip';
+import {FaCopy} from "react-icons/fa"
+import {FaSyncAlt} from "react-icons/fa"
 import { generatePassword, copyToClipBoard } from '../../../Utils/Helper';
 
 const Display = () => {
@@ -92,15 +95,15 @@ const Display = () => {
                     </div>
 
                     <div className="password-display-icons">
-                        <Button
+                        <FaCopy
                             className="copy-btn"
-                            iconClass="far fa-copy"
-                            handleClick={copyClipBoard}
+                            // iconClass="far fa-copy"
+                            onClick={copyClipBoard}
                         />
-                        <Button
+                        <FaSyncAlt
                             className="generate-btn"
-                            iconClass="fas fa-sync-alt"
-                            handleClick={() => generateNewPassword()}
+                            // iconClass="fas fa-sync-alt"
+                            onClick={() => generateNewPassword()}
                         />
 
                         <Tooltip 

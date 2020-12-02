@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
 import './Container.css';
-import Button from './button/Button';
+// import Button from './button/Button';
+import {Button} from 'react-bootstrap'
 import Slider from './slider/Slider';
 import CheckBox from './checkbox/CheckBox';
 import { generatePassword, setPasswordLength, copyToClipBoard } from '../../../Utils/Helper';
@@ -210,8 +211,8 @@ const Container = props => {
                         <Button 
                             className="btn password-btn"
                             label="Copy Password"
-                            handleClick={copyClipBoard(passwordRef.current)}
-                        />
+                            onClick={copyClipBoard(passwordRef.current)}
+                        >Copy Password</Button>
                     </div>
                 </div>
             </div>
