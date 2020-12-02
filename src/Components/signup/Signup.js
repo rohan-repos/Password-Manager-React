@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert,Container } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext";
 import { useFirestore } from "../../context/FirebaseContext";
 import { Link, useHistory } from "react-router-dom";
+import MustContainItem from "./MustContainItem"
+import "./Signup.css"
 
 export default function Signup() {
   const emailRef = useRef();
@@ -35,7 +37,7 @@ export default function Signup() {
     ["A number (0-9)", containsN],
     ["A special character (!@#$)", containsSC],
     ["At least 8 characters", contains8C],
-    ["Passwords match", passwordMatch]
+    // ["Passwords match", passwordMatch]
   ]
 
   const history = useHistory();
@@ -59,32 +61,32 @@ export default function Signup() {
 
   function validatePassword() {
     // has uppercase letter
-    if (passwordState.toLowerCase() != passwordState) setContainsUL(true)
-    else setContainsUL(false)
+    if (passwordState.toLowerCase() != passwordState) {setContainsUL(true)}
+    else {setContainsUL(false)}
 
     // has lowercase letter
-    if (passwordState.toUpperCase() != passwordState) setContainsLL(true)
-    else setContainsLL(false)
+    if (passwordState.toUpperCase() != passwordState) {setContainsLL(true)}
+    else {setContainsLL(false)}
 
     // has number
-    if (/\d/.test(passwordState)) setContainsN(true)
-    else setContainsN(false)
+    if (/\d/.test(passwordState)) {setContainsN(true)}
+    else {setContainsN(false)}
 
     // has special character
-    if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(passwordState)) setContainsSC(true)
-    else setContainsSC(false)
+    if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(passwordState)) {setContainsSC(true)}
+    else {setContainsSC(false)}
 
     // has 8 characters
-    if (passwordState.length >= 8) setContains8C(true)
-    else setContains8C(false)
+    if (passwordState.length >= 8) {setContains8C(true)}
+    else {setContains8C(false)}
 
     // passwords match
-    if (passwordState !== "" && passwordState === confirmPassword) setPasswordMatch(true)
-    else setPasswordMatch(false)
+    if (passwordState !== "" && passwordState === confirmPassword) {setPasswordMatch(true)}
+    else {setPasswordMatch(false)}
 
     // all validations passed
-    if (containsUL && containsLL && containsN && containsSC && contains8C && passwordMatch) setAllValid(true)
-    else setAllValid(false)
+    // if (containsUL && containsLL && containsN && containsSC && contains8C && passwordMatch) {setAllValid(true)}
+    // else {setAllValid(false)}
   }
 
   const contStyle = {
@@ -129,6 +131,12 @@ export default function Signup() {
                 Next
               </Button>
             </Form>
+            <h4>Must contain:</h4>
+            <Container>
+              {/* {console.log(mustContainData)} */}
+              {mustContainData.map(data=> <MustContainItem data={data}/>)}
+            </Container>
+
           </Card.Body>
         </Card>
         <div className="w-100 text-center mt-2">
