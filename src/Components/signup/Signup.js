@@ -49,6 +49,9 @@ export default function Signup() {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
+    if(!allValid){
+      return setError("All conditions for password not met")
+    }
 
     history.push({
       pathname: "/security-questions",
@@ -81,12 +84,12 @@ export default function Signup() {
     else {setContains8C(false)}
 
     // passwords match
-    if (passwordState !== "" && passwordState === confirmPassword) {setPasswordMatch(true)}
-    else {setPasswordMatch(false)}
+    // if (passwordState !== "" && passwordState === confirmPassword) {setPasswordMatch(true)}
+    // else {setPasswordMatch(false)}
 
     // all validations passed
-    // if (containsUL && containsLL && containsN && containsSC && contains8C && passwordMatch) {setAllValid(true)}
-    // else {setAllValid(false)}
+    if (containsUL && containsLL && containsN && containsSC && contains8C && passwordMatch) {setAllValid(true)}
+    else {setAllValid(false)}
   }
 
   const contStyle = {
