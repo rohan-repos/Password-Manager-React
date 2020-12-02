@@ -5,7 +5,7 @@ import {FirestoreProvider} from '../context/FirebaseContext'
 import {BrowserRouter as Router , Route , Switch } from 'react-router-dom'
 import Dashboard from "./dashboard/Dashboard"
 import Login from "./Login"
-import Signup from "./Signup"
+import Signup from "./signup/Signup"
 import PrivateRoute from "./PrivateRoute"
 import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"

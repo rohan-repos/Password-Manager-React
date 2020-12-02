@@ -69,7 +69,7 @@ function Navbar() {
                 <li className="navs-btn">
                 {button ? (
                   <Link to="/password-generator" className="btns-link">
-                    <Button buttonStyle="btns--outline">Password Generator/ Password Checker</Button>
+                    <Button buttonStyle="btns--outline">Password Tools</Button>
                   </Link>
                 ) : (
                   <Link to="/password-generator" className="btns-link">
@@ -78,7 +78,7 @@ function Navbar() {
                       buttonSize="btns--mobile"
                       onClick={closeMobileMenu}
                     >
-                      Password Generator/ Password Checker
+                      Password Tools
                     </Button>
                   </Link>
                 )}
