@@ -2,7 +2,7 @@ import React from "react";
 import { ListGroup } from "react-bootstrap";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import "./Signup.css";
+import "./signup/Signup.css";
 
 function MustContainItem(props) {
   const { data } = props;

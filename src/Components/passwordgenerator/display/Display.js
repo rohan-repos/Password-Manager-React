@@ -130,7 +130,7 @@ const Display = () => {
 const selectTagStyle = {
     backgroundColor: 'inherit',
     color: '#506175',
-    width: '20%',
+    width: '30%',
     height: 'auto',
     marginLeft: '-4px'
 }

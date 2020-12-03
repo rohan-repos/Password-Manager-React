@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState,useEffect } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
@@ -41,6 +41,12 @@ export default function UpdateProfile() {
       })
   }
 
+  
+  useEffect(() => {
+    window.scrollTo(0,0)
+   
+  }, [])
+  
   const contStyle={
     display:"flex",
     alignItems:"center",

@@ -3,7 +3,7 @@ import { Form, Button, Card, Alert,Container } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext";
 import { useFirestore } from "../../context/FirebaseContext";
 import { Link, useHistory } from "react-router-dom";
-import MustContainItem from "./MustContainItem"
+import MustContainItem from "../MustContainItem"
 import "./Signup.css"
 
 export default function Signup() {
@@ -88,7 +88,7 @@ export default function Signup() {
     // else {setPasswordMatch(false)}
 
     // all validations passed
-    if (containsUL && containsLL && containsN && containsSC && contains8C && passwordMatch) {setAllValid(true)}
+    if (containsUL && containsLL && containsN && containsSC && contains8C ) {setAllValid(true)}
     else {setAllValid(false)}
   }
 

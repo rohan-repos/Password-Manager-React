@@ -206,8 +206,8 @@ const Container = props => {
             <br />
 
             <div className="text-center">
-                <div className="row">
-                    <div className="col-md-12">
+                <div className="">
+                    <div className="">
                         <Button 
                             className="btn password-btn"
                             label="Copy Password"

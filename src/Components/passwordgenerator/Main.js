@@ -1,8 +1,8 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Header from "./header/Header";
 import Display from "./display/Display";
 import DisplayStrength from "../passwordstrengthchecker/DisplayStrength";
-import { Tabs, Tab } from "react-bootstrap";
+import { Tabs, Tab,Container,Card } from "react-bootstrap";
 
 const Main = () => {
   const contStyle = {
@@ -12,8 +12,15 @@ const Main = () => {
     minHeight: "100vh",
   };
 
+  
+  useEffect(() => {
+    window.scrollTo(0,0)
+   
+  }, [])
+
   return (
-    <div style={contStyle}>
+    <Container style={contStyle}>
+      <Card>
       <div style={{maxWidth:"1200px"}}>
         <Tabs defaultActiveKey="generatepassword" id="uncontrolled-tab-example">
           <Tab eventKey="generatepassword" title="Generate Password">
@@ -26,7 +33,8 @@ const Main = () => {
         </Tabs>
         
       </div>
-    </div>
+      </Card>
+    </Container>
   );
 };
 
