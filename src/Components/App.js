@@ -38,7 +38,7 @@ function App() {
                     <PrivateRoute exact path="/home" component={Dashboard}/>
                     <PrivateRoute path="/update-profile" component={UpdateProfile}/>
                     <RedirectPrivateRoute exact path="/" component={Home}/>
-                    <RedirectPrivateRoute path="/password-generator" component={Main}/>
+                    <Route path="/password-generator" component={Main}/>
                     <RedirectPrivateRoute path="/login" component={Login}/>
                     <RedirectPrivateRoute path="/signup" component={Signup}/>
                     <RedirectPrivateRoute path="/security-questions" component={SecurityQuestions}/>

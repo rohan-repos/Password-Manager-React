@@ -145,6 +145,9 @@ export default function ResetPassword(props) {
                 <Form.Control
                   type="password"
                   ref={passwordConfirmRef}
+                  value={passwordStateConfirm}
+                  onChange={(e) => setPasswordStateConfirm(e.target.value)}
+                  onKeyUp={validatePassword}
                   required
                 />
               </Form.Group>

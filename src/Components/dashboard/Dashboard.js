@@ -16,7 +16,6 @@ import { useFirestore } from "../../context/FirebaseContext";
 import { Link, useHistory } from "react-router-dom";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
-import { get } from "jquery";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -82,17 +81,21 @@ export default function Dashboard() {
     Bcrypt.genSalt(10, function (err, salt) {
       if (err) {
         setError(err);
-      } else {
+      }
+      else{
         setSalt(salt);
       }
       Bcrypt.hash("B4c0//", salt, function (err, hash) {
         if (err) {
           setError(err);
         } else {
+         
           setHash(hash);
         }
       });
     });
+    console.log(salt);
+    console.log(hash)
   }
 
   function handleDelete(docId) {
@@ -206,9 +209,9 @@ export default function Dashboard() {
           </Row>
           <div className=" d-flex justify-content-center pt-3 pb-5">
             <Button type="submit">Add user details</Button>
-            {/* <Button variant="primary" onClick={handleGenSalt}>
+            <Button variant="primary" onClick={handleGenSalt}>
           click
-        </Button> */}
+        </Button>
           </div>
         </Form>
         {/* <Button onClick={handleGetData}>Get Data</Button> */}

@@ -144,6 +144,23 @@ function Navbar() {
                   )}
                 </li>
                 <li className="navs-btn">
+                {button ? (
+                  <Link to="/password-generator" className="btns-link">
+                    <Button buttonStyle="btns--outline">Password Tools</Button>
+                  </Link>
+                ) : (
+                  <Link to="/password-generator" className="btns-link">
+                    <Button
+                      buttonStyle="btns--ouline"
+                      buttonSize="btns--mobile"
+                      onClick={closeMobileMenu}
+                    >
+                      Password Tools
+                    </Button>
+                  </Link>
+                )}
+              </li>
+                <li className="navs-btn">
                   {button ? (
                     // <Link to="/login" className="btns-link">
                       <Button buttonStyle="btns--outline" onClick={handleLogout}>Log Out</Button>
