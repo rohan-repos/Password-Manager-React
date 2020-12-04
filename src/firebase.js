@@ -2,6 +2,7 @@ import firebase from "firebase/app"
 import "firebase/auth"
 import "firebase/firestore"
 
+//initalize connection to firebase server with the keys from your primary website account
 const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -13,6 +14,6 @@ const app = firebase.initializeApp({
 })
 
 
-export const auth = app.auth()
-export const firestore = app.firestore()
+export const auth = app.auth()//Reference to Firebase authentication Services
+export const firestore = app.firestore() // Reference to Firebase Firestore (NoSQL DB)
 export default app
