@@ -2,10 +2,10 @@ import React, { useState,useEffect } from "react";
 import { Link ,useHistory} from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { MdFingerprint } from "react-icons/md";
-import { Button } from "../Button";
+import { Button } from "../../Button";
 import "./Navbar.css";
 import { IconContext } from "react-icons/lib";
-import { useAuth } from "../../context/AuthContext"
+import { useAuth } from "../../../context/AuthContext"
 
 function Navbar() {
   const [click, setClick] = useState(false);
