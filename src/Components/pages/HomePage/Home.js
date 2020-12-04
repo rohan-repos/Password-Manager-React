@@ -1,7 +1,7 @@
 import React ,{useEffect} from 'react'
-import HeroSection from '../../HeroSection';
+import HomeContentSection from '../HomeContentSection';
 import { homeObjOne, homeObjTwo, homeObjThree, homeObjFour } from './Data';
-import Pricing from '../../Pricing';
+
 
 function Home() {
   
@@ -9,13 +9,15 @@ function Home() {
     window.scrollTo(0,0)
    
   }, [])
+  
   return (
     <>
-      <HeroSection {...homeObjOne} />
-      <HeroSection {...homeObjThree} />
-      <HeroSection {...homeObjTwo} />
-      {/* <Pricing /> */}
-      <HeroSection {...homeObjFour} />
+    {/* Display the homepage content based on description from Data.js */}
+      <HomeContentSection {...homeObjOne} />
+      <HomeContentSection {...homeObjThree} />
+      <HomeContentSection {...homeObjTwo} />
+      <HomeContentSection {...homeObjFour} />
+      
     </>
   );
 }
