@@ -48,9 +48,7 @@ export default function Signup() {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
-    if(!allValid){
-      return setError("All conditions for password not met")
-    }
+  
 
     history.push({
       pathname: "/security-questions",
@@ -79,7 +77,7 @@ useEffect(() => {
     else {setContainsN(false)}
 
     // has special character
-    if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(passwordState)) {setContainsSC(true)}
+    if (/[~`!#$%\^&*@+=\-\[\]\\';,/{}|\\":<>\?]/g.test(passwordState)) {setContainsSC(true)}
     else {setContainsSC(false)}
 
     // has 8 characters

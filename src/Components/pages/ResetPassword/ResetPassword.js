@@ -81,7 +81,7 @@ export default function ResetPassword(props) {
     }
 
     // has special character
-    if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(passwordState)) {
+    if (/[~`!#$%\^&*@+=\-\[\]\\';,/{}|\\":<>\?]/g.test(passwordState)) {
       setContainsSC(true);
     } else {
       setContainsSC(false);

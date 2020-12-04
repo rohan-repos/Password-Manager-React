@@ -44,14 +44,14 @@ function DisplayStrength() {
   }
 
   return (
-    <div className="DisplayStrength pt-4">
+    <div className="DisplayStrength p-4">
       <div className="meter">
         <h2>Enter the password to check the strength</h2>
         <div>
         {showPass ? (
-          <input autoComplete="off" type="text" onChange={handleChange} />
+          <input autoComplete="off" type="text" onChange={handleChange} placeholder="type here to check"/>
         ) : (
-          <input autoComplete="off" type="password" onChange={handleChange} />
+          <input autoComplete="off" type="password" onChange={handleChange} placeholder="type here to check"/>
         )}{
             <span onClick={handleToggle} className="pl-2">
               {showPass ? <FiEye /> : <FiEyeOff />}
