@@ -84,7 +84,7 @@ function SecurityQuestions(props) {
             console.log(err);
           }
           if (!err) {
-            console.log(salts);
+            // console.log(salts);
             userSaltData.saltObj = salts;
           }
           Bcrypt.hash(secAnswer, salts, function (err, hashs) {
@@ -92,11 +92,12 @@ function SecurityQuestions(props) {
               console.log(err);
             }
             if (!err) {
-              console.log(hashs);
+              // console.log(hashs);
               userSaltData.hashObj = hashs;
               createUserData(cred.user.uid, {
                 secQuestion1: secQuestion,
                 answer1: userSaltData.saltObj,
+                key1: userSaltData.hashObj
               });
             }
           });
@@ -111,31 +112,31 @@ function SecurityQuestions(props) {
     setLoading(false);
   }
 
-  function handleGenSaltCall(key) {
-    Bcrypt.genSalt(10, function (err, salt) {
-      if (err) {
-        setError(err);
-      } else {
-        setSalt(salt);
-      }
-      Bcrypt.hash(key + "", salt, function (err, hash) {
-        if (err) {
-          setError(err);
-        } else {
-          setHash(hash);
-        }
-      });
-    });
-  }
+  // function handleGenSaltCall(key) {
+  //   Bcrypt.genSalt(10, function (err, salt) {
+  //     if (err) {
+  //       setError(err);
+  //     } else {
+  //       setSalt(salt);
+  //     }
+  //     Bcrypt.hash(key + "", salt, function (err, hash) {
+  //       if (err) {
+  //         setError(err);
+  //       } else {
+  //         setHash(hash);
+  //       }
+  //     });
+  //   });
+  // }
 
-  async function handleGenSalt(key) {
-    await handleGenSaltCall(key);
-  }
+  // async function handleGenSalt(key) {
+  //   await handleGenSaltCall(key);
+  // }
 
-  function ViewSalt() {
-    console.log(salt);
-    console.log(hash);
-  }
+  // function ViewSalt() {
+  //   console.log(salt);
+  //   console.log(hash);
+  // }
 
   return (
     <div style={contStyle}>
@@ -176,8 +177,8 @@ function SecurityQuestions(props) {
               <Button disabled={loading} className="w-100" type="submit">
                 Sign Up
               </Button>
-              <Button onClick={() => handleGenSalt(secAnswer)}>Gen Salt</Button>
-              <Button onClick={ViewSalt}>View Salt</Button>
+              {/* <Button onClick={() => handleGenSalt(secAnswer)}>Gen Salt</Button>
+              <Button onClick={ViewSalt}>View Salt</Button> */}
               {/* {console.log(salt)} */}
               <Link
                 to="/signup"
