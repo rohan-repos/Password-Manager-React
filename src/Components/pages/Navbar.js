@@ -14,12 +14,13 @@ function Navbar() {
   const {currentUser,logout} = useAuth() 
   const history = useHistory()
   
+  //Disconnect from firebase server
   async function handleLogout() {
     setError("")
     try {
       setClick(false);
       await logout()
-      history.push("/login")
+      history.push("/login")//push to login Normal route on success
     } catch {
       setError("Failed to log out")
     }
@@ -30,6 +31,8 @@ function Navbar() {
   function closeMobileMenu() {
     setClick(false);
   }
+  
+  //used for conditional rendering for changing styles for mobile view
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -46,6 +49,7 @@ function Navbar() {
     }
   }, []);
 
+  // Conditional rendering for logged out user
   if(!currentUser){
   return (
     <>
@@ -67,6 +71,7 @@ function Navbar() {
               </li>
              
                 <li className="navs-btn">
+                  {/* conditional rendering based on screen size check function showButton() for more information */}
                 {button ? (
                   <Link to="/password-generator" className="btns-link">
                     <Button buttonStyle="btns--outline">Password Tools</Button>
@@ -84,6 +89,7 @@ function Navbar() {
                 )}
               </li>
               <li className="navs-btn">
+                {/* conditional rendering based on screen size check function showButton() for more information */}
                 {button ? (
                   <Link to="/login" className="btns-link">
                     <Button buttonStyle="btns--outline">LogIn / SignUp</Button>
@@ -106,6 +112,7 @@ function Navbar() {
       </IconContext.Provider>
     </>
   );}
+  // Rendering for logged in user - change navbar content on Login
   else{
     return (
       <>
@@ -162,9 +169,7 @@ function Navbar() {
               </li>
                 <li className="navs-btn">
                   {button ? (
-                    // <Link to="/login" className="btns-link">
                       <Button buttonStyle="btns--outline" onClick={handleLogout}>Log Out</Button>
-                    // </Link>
                   ) : (
                     <Link to="/logout" className="btns-link">
                       <Button
@@ -187,27 +192,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
- {/* <li className="nav-item">
-                <Link
-                  to="/features"
-                  className="nav-links"
-                  onClick={closeMobileMenu}
-                >
-                  Features
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/how" className="nav-links" onClick={closeMobileMenu}>
-                  How it works?
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="/about"
-                  className="nav-links"
-                  onClick={closeMobileMenu}
-                >
-                  About
-                </Link>
-              </li> */}
