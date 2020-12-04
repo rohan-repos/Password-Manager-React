@@ -37,7 +37,6 @@ export default function Signup() {
     ["A number (0-9)", containsN],
     ["A special character (!@#$)", containsSC],
     ["At least 8 characters", contains8C],
-    // ["Passwords match", passwordMatch]
   ]
 
   const history = useHistory();
@@ -64,7 +63,6 @@ export default function Signup() {
 
   function validatePassword() {
     // has uppercase letter
-    // console.log(passwordMatch)
     if (passwordState.toLowerCase() !== passwordState) {setContainsUL(true)}
     else {setContainsUL(false)}
 
@@ -84,9 +82,6 @@ export default function Signup() {
     if (passwordState.length >= 8) {setContains8C(true)}
     else {setContains8C(false)}
 
-   // passwords match
-    // if ( passwordState === confirmPassword) setPasswordMatch(true)
-    // else setPasswordMatch(false)
 
     // all validations passed
     if (containsUL && containsLL && containsN && containsSC && contains8C ) {setAllValid(true)}
@@ -140,7 +135,6 @@ export default function Signup() {
             </Form>
             <h4>Must contain:</h4>
             <Container>
-              {/* {console.log(mustContainData)} */}
               {mustContainData.map(data=> <MustContainItem data={data}/>)}
             </Container>
 

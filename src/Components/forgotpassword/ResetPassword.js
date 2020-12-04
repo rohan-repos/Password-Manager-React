@@ -1,8 +1,8 @@
-import React, { useRef, useState,useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Card, Form, Button, Alert, Container } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
-import MustContainItem from "../MustContainItem"
+import MustContainItem from "../MustContainItem";
 
 export default function ResetPassword(props) {
   const passwordRef = useRef();
@@ -31,10 +31,8 @@ export default function ResetPassword(props) {
     ["A number (0-9)", containsN],
     ["A special character (!@#$)", containsSC],
     ["At least 8 characters", contains8C],
-    // ["Passwords match", passwordMatch]
   ];
 
-  // console.log(props.location.state.emailData)
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -96,10 +94,6 @@ export default function ResetPassword(props) {
       setContains8C(false);
     }
 
-    // passwords match
-    // if (passwordState !== "" && passwordState === confirmPassword) {setPasswordMatch(true)}
-    // else {setPasswordMatch(false)}
-
     // all validations passed
     if (containsUL && containsLL && containsN && containsSC && contains8C) {
       setAllValid(true);
@@ -109,9 +103,8 @@ export default function ResetPassword(props) {
   }
 
   useEffect(() => {
-    window.scrollTo(0,0)
-   
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   const contStyle = {
     display: "flex",
@@ -160,7 +153,6 @@ export default function ResetPassword(props) {
             </div>
             <h4>Must contain:</h4>
             <Container>
-              {/* {console.log(mustContainData)} */}
               {mustContainData.map((data) => (
                 <MustContainItem data={data} />
               ))}

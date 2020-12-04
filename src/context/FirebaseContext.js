@@ -36,13 +36,6 @@ function getUserKey(userId){
   return firestore.collection('userData').doc(userId).collection('securityQuestions')
 }
 
-//   useEffect(() => {
-//         getCollectionData().then(snapshot=>{
-//           console.log(snapshot.docs)
-//       })
-//       setLoading(false)
-//   }, []);
-
 
   const value = {
     getCollectionData,

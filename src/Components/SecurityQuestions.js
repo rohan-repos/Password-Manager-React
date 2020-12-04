@@ -13,9 +13,6 @@ function SecurityQuestions(props) {
   const [secQuestion, setSecQuestion] = useState("");
   const [secAnswer, setSecAnswer] = useState("");
 
-  // const SecQuestion2Ref = useRef()
-  // const answer2Ref = useRef()
-
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -32,46 +29,12 @@ function SecurityQuestions(props) {
     minHeight: "100vh",
   };
 
-  // async function handleSubmit(e) {
-
-  //   e.preventDefault()
-
-  //     setError("")
-  //     setLoading(true)
-
-  //     // console.log(props.location.state.email)
-  //     // console.log(props.location.state.password)
-  //     signup(props.location.state.email, props.location.state.password)
-  //     .then(cred=>{
-  //       console.log("SecAnswer",secAnswer)
-  //       handleGenSalt(secAnswer).then(()=>{
-  //         console.log("salt"+salt);
-  //         // console.log("hash"+hash)
-  //         console.log(cred)
-  //         createUserData(cred.user.uid,{
-  //           secQuestion1 : secQuestion,
-  //           answer1: salt,
-  //       })
-
-  //         // secQuestion2 : SecQuestion2Ref.current.value,
-  //         // answer2: answer2Ref.current.value,
-  //       })
-  //     },err=>{
-  //         setError(err)
-  //     })
-  //   //   history.push("/security-questions")
-
-  //   setLoading(false)
-  // }
-
   async function handleSubmit(e) {
     e.preventDefault();
 
     setError("");
     setLoading(true);
 
-    // console.log(props.location.state.email)
-    // console.log(props.location.state.password)
     signup(props.location.state.email, props.location.state.password).then(
       (cred) => {
         console.log("SecAnswer", secAnswer);
@@ -84,7 +47,6 @@ function SecurityQuestions(props) {
             console.log(err);
           }
           if (!err) {
-            // console.log(salts);
             userSaltData.saltObj = salts;
           }
           Bcrypt.hash(secAnswer, salts, function (err, hashs) {
@@ -92,12 +54,11 @@ function SecurityQuestions(props) {
               console.log(err);
             }
             if (!err) {
-              // console.log(hashs);
               userSaltData.hashObj = hashs;
               createUserData(cred.user.uid, {
                 secQuestion1: secQuestion,
                 answer1: userSaltData.saltObj,
-                key1: userSaltData.hashObj
+                key1: userSaltData.hashObj,
               });
             }
           });
@@ -107,36 +68,9 @@ function SecurityQuestions(props) {
         setError(err);
       }
     );
-    //   history.push("/security-questions")
 
     setLoading(false);
   }
-
-  // function handleGenSaltCall(key) {
-  //   Bcrypt.genSalt(10, function (err, salt) {
-  //     if (err) {
-  //       setError(err);
-  //     } else {
-  //       setSalt(salt);
-  //     }
-  //     Bcrypt.hash(key + "", salt, function (err, hash) {
-  //       if (err) {
-  //         setError(err);
-  //       } else {
-  //         setHash(hash);
-  //       }
-  //     });
-  //   });
-  // }
-
-  // async function handleGenSalt(key) {
-  //   await handleGenSaltCall(key);
-  // }
-
-  // function ViewSalt() {
-  //   console.log(salt);
-  //   console.log(hash);
-  // }
 
   return (
     <div style={contStyle}>
@@ -166,20 +100,10 @@ function SecurityQuestions(props) {
                   required
                 />
               </Form.Group>
-              {/* <Form.Group id="password-confirm">
-                <Form.Label>Security Question 2</Form.Label>
-                <Form.Control type="text" ref={SecQuestion2Ref} required />
-                </Form.Group>
-                <Form.Group id="email">
-                <Form.Label>Answer 2</Form.Label>
-                <Form.Control type="password" ref={answer2Ref} required />
-                </Form.Group> */}
+
               <Button disabled={loading} className="w-100" type="submit">
                 Sign Up
               </Button>
-              {/* <Button onClick={() => handleGenSalt(secAnswer)}>Gen Salt</Button>
-              <Button onClick={ViewSalt}>View Salt</Button> */}
-              {/* {console.log(salt)} */}
               <Link
                 to="/signup"
                 style={{ minWidth: "100%", textAlign: "center" }}
