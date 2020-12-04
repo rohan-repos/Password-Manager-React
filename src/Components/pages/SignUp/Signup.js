@@ -1,9 +1,9 @@
 import React, { useRef, useState,useEffect } from "react";
 import { Form, Button, Card, Alert,Container } from "react-bootstrap";
-import { useAuth } from "../../context/AuthContext";
-import { useFirestore } from "../../context/FirebaseContext";
+import { useAuth } from "../../../context/AuthContext";
+import { useFirestore } from "../../../context/FirebaseContext";
 import { Link, useHistory } from "react-router-dom";
-import MustContainItem from "../MustContainItem"
+import MustContainItem from "../../../Utils/MustContainItem"
 import "./Signup.css"
 
 export default function Signup() {

@@ -2,7 +2,7 @@ import React from "react";
 import { ListGroup } from "react-bootstrap";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import "./signup/Signup.css";
+import "../Components/pages/SignUp/Signup.css"
 
 function MustContainItem(props) {
   const { data } = props;
@@ -15,12 +15,6 @@ function MustContainItem(props) {
     return classArr.join(" ");
   };
   return (
-    // <div className="MustContainItem">
-    //   <div className="must-item">
-    //     <li className="must-text">{label}</li>
-    //     <div className={setClass()}></div>
-    //   </div>
-    // </div>
     <div className="MustContainItem">
       <div className="must-item">
         <ListGroup className="">
@@ -36,8 +30,6 @@ function MustContainItem(props) {
             {label}
           </ListGroup.Item>
         </ListGroup>
-        {/* <li className="must-text">{label}</li> */}
-        {/* <div className={setClass()}></div> */}
       </div>
     </div>
   );

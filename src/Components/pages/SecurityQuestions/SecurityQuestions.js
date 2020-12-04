@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import { useAuth } from "../context/AuthContext";
-import { useFirestore } from "../context/FirebaseContext";
+import { useAuth } from "../../../context/AuthContext";
+import { useFirestore } from "../../../context/FirebaseContext";
 import { Link, useHistory } from "react-router-dom";
 import Bcrypt from "bcryptjs";
 

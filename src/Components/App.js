@@ -2,21 +2,21 @@ import React from "react";
 import { AuthProvider } from "../context/AuthContext";
 import { FirestoreProvider } from "../context/FirebaseContext";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Dashboard from "./dashboard/Dashboard";
-import Login from "./Login";
-import Signup from "./signup/Signup";
-import PrivateRoute from "./PrivateRoute";
-import ForgotPassword from "./ForgotPassword";
-import UpdateProfile from "./UpdateProfile";
-import RedirectPrivateRoute from "./RedirectPrivateRoute";
-import VerifyPass from "./VerifyPass";
-import ResetPassword from "./forgotpassword/ResetPassword";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Login from "./pages/Login/Login";
+import Signup from "./pages/SignUp/Signup";
+import PrivateRoute from "./Routes/PrivateRoute";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import UpdateProfile from "./pages/UpdateProfile/UpdateProfile";
+import RedirectPrivateRoute from "./Routes/RedirectPrivateRoute";
+import VerifyPass from "../Utils/VerifyPass";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import "./App.css";
-import Navbar from "./pages/Navbar";
+import Navbar from "./pages/Navbar/Navbar";
 import Home from "./pages/HomePage/Home";
 import Footer from "./pages/Footer/Footer";
 import Main from "./passwordgenerator/Main";
-import SecurityQuestions from "./SecurityQuestions";
+import SecurityQuestions from "./pages/SecurityQuestions/SecurityQuestions";
 
 function App() {
   return (

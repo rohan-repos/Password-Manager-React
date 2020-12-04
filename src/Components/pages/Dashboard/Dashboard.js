@@ -11,8 +11,8 @@ import {
   Form,
   Accordion,
 } from "react-bootstrap";
-import { useAuth } from "../../context/AuthContext";
-import { useFirestore } from "../../context/FirebaseContext";
+import { useAuth } from "../../../context/AuthContext";
+import { useFirestore } from "../../../context/FirebaseContext";
 import { Link, useHistory } from "react-router-dom";
 import { FaToggleOff, FaToggleOn, FaLock } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";

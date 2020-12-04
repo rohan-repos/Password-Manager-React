@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import queryString from "query-string";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext"
 import { Alert, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 

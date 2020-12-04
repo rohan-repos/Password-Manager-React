@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Card, Form, Button, Alert, Container } from "react-bootstrap";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
-import MustContainItem from "../MustContainItem";
+import MustContainItem from "../../../Utils/MustContainItem";
 
 export default function ResetPassword(props) {
   const passwordRef = useRef();
