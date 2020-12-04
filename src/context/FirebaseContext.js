@@ -32,6 +32,10 @@ function createUserData(userId,secQuestionData){
   )
 }
 
+function getUserKey(userId){
+  return firestore.collection('userData').doc(userId).collection('securityQuestions')
+}
+
 //   useEffect(() => {
 //         getCollectionData().then(snapshot=>{
 //           console.log(snapshot.docs)
@@ -44,7 +48,8 @@ function createUserData(userId,secQuestionData){
     getCollectionData,
     addCollectionData,
     deleteCollectionData,
-    createUserData
+    createUserData,
+    getUserKey
   };
   return (
     <FirestoreContext.Provider value={value}>
