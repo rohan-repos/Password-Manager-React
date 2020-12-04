@@ -29,16 +29,14 @@ function App() {
           >
             <div>
               <AuthProvider>
+                {/*Auth context provider to access firebase authentication services*/}
                 <FirestoreProvider>
+                  {/*Firestore context provider to access firebase authentication services*/}
                   <Navbar />
                   <Switch>
-                    <PrivateRoute exact path="/home" component={Dashboard} />
-                    <PrivateRoute
-                      path="/update-profile"
-                      component={UpdateProfile}
-                    />
+                    {/* <PrivateRoute/> Component- Route accessible to user after logging in
+                    <RedirectPrivateRoute/> Component- Route accessible to user before logging in */}
                     <RedirectPrivateRoute exact path="/" component={Home} />
-                    <Route path="/password-generator" component={Main} />
                     <RedirectPrivateRoute path="/login" component={Login} />
                     <RedirectPrivateRoute path="/signup" component={Signup} />
                     <RedirectPrivateRoute
@@ -56,6 +54,12 @@ function App() {
                     <RedirectPrivateRoute
                       path="/reset-password"
                       component={ResetPassword}
+                    />
+                    <Route path="/password-generator" component={Main} />
+                    <PrivateRoute exact path="/home" component={Dashboard} />
+                    <PrivateRoute
+                      path="/update-profile"
+                      component={UpdateProfile}
                     />
                   </Switch>
                 </FirestoreProvider>
