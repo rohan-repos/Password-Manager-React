@@ -14,8 +14,9 @@ import {
 import { useAuth } from "../../context/AuthContext";
 import { useFirestore } from "../../context/FirebaseContext";
 import { Link, useHistory } from "react-router-dom";
-import { FaToggleOff, FaToggleOn } from "react-icons/fa";
+import { FaToggleOff, FaToggleOn, FaLock } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
+import CryptoJS from "crypto-js"
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -27,12 +28,17 @@ export default function Dashboard() {
   const [showPass, setShowPass] = useState([]);
   const [arrLength, setArrLength] = useState(0);
   const [delConfirmShow, setDelConfirmShow] = useState(false);
+  const [profilePassRef,setProfilePassRef] = useState("")
+  const [showUserDetail,setShowUserDetail]=useState(false)
+  
+
 
   const { currentUser, logout, verifyEmail } = useAuth();
   const {
     getCollectionData,
     addCollectionData,
     deleteCollectionData,
+    getUserKey
   } = useFirestore();
   const history = useHistory();
 
@@ -48,55 +54,140 @@ export default function Dashboard() {
   const handleShow = () => setShow(true);
   const handleDelShow = () => setDelConfirmShow(true);
   const handleDelClose = () => setDelConfirmShow(false);
+  const handleUserDetailShow = ()=> setShowUserDetail(true)
+  const handleUserDetailClose = ()=> setShowUserDetail(false)
 
   function handleUserData(e) {
     e.preventDefault();
     if (currentUser) {
-      addCollectionData(
-        {
-          username: userNameRef.current.value,
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
-        },
-        currentUser.uid
-      ).then(() => {
-        valFormRef.current.reset();
-        // resetformdata()
-        console.log("complete");
-      });
-    }
-    console.log(currentUser);
-  }
+      getUserKey(currentUser.uid).get().then((snapshot)=>{
+      const snapdocs = snapshot.docs[0]
+      // const profilePass=profilePassRef.current.value
+      // const userSaltData = {
+      //   hashObj: "",
+      // };
+      //   Bcrypt.hash(profilePassRef, snapdocs.data()['answer1'], function (err, hashs) {
+      //     if (err) {
+      //       console.log(err);
+      //     }
+      //     if (!err) {
+            
+      //       userSaltData.hashObj = hashs;
+      //       if(hashs===snapshot.docs[0].data()['key1'])
+      //       {
+              const ciphertext = CryptoJS.AES.encrypt(passwordRef.current.value,snapdocs.data()['key1']).toString();
+              addCollectionData(
+                {
+                  username: userNameRef.current.value,
+                  email: emailRef.current.value,
+                  password: ciphertext,
+                },
+                currentUser.uid
+              ).then(() => {
+                valFormRef.current.reset();
+                // resetformdata()
+                console.log("complete");
+              });
+            // }
+            // else{
+            //   alert('incorrect profile password please try again with correct password')
+            // }
+            // console.log("hashObj",userSaltData.hashObj)
+            // console.log("snapshot",snapshot.docs[0].data()['key1'])
+           
+          })
+      // });
+      // console.log("prifle value",profilePassRef)
+    // });
+      // addCollectionData(
+      //   {
+      //     username: userNameRef.current.value,
+      //     email: emailRef.current.value,
+      //     password: passwordRef.current.value,
+      //   },
+      //   currentUser.uid
+      // ).then(() => {
+      //   valFormRef.current.reset();
+      //   // resetformdata()
+      //   console.log("complete");
+      // });
+    // }
+    // console.log(currentUser);
+   }
+  handleUserDetailClose()
+}
 
   function handleToggle(index) {
     if (showPass[index]) {
       setShowPass({ [index]: false });
     } else {
-      console.log(tablePassRef.current[index]);
+      // console.log(tablePassRef.current[index]);
       setShowPass({ [index]: true });
     }
   }
 
-  function handleGenSalt() {
-    Bcrypt.genSalt(10, function (err, salt) {
-      if (err) {
-        setError(err);
-      }
-      else{
-        setSalt(salt);
-      }
-      Bcrypt.hash("B4c0//", salt, function (err, hash) {
-        if (err) {
-          setError(err);
-        } else {
-         
-          setHash(hash);
-        }
-      });
-    });
-    console.log(salt);
-    console.log(hash)
+  function decryptPass(index){
+
+    if(currentUser){
+      setShowPass({ [index]: true });
+      getUserKey(currentUser.uid).get().then(snapshot=>{
+        const snapdocs = snapshot.docs[0]
+        const userSaltData = {
+          hashObj: "",
+        };
+        const profilepassPrompt=prompt("enter profile password")
+          Bcrypt.hash(profilepassPrompt, snapdocs.data()['answer1'], function (err, hashs) {
+            if (err) {
+              console.log(err);
+            }
+            if (!err) {              
+              // userSaltData.hashObj = hashs;
+              if(hashs===snapdocs.data()['key1'])
+              {
+                const plainPass=CryptoJS.AES.decrypt(tablePassRef.current[index].current.value,snapdocs.data()['key1']).toString(CryptoJS.enc.Utf8)
+                tablePassRef.current[index].current.value=plainPass
+              }
+              else{
+                alert('incorrect profile password please try again with correct password')
+              }
+              // console.log("hashObj",userSaltData.hashObj)
+              // console.log("snapshot",snapshot.docs[0].data()['key1'])
+             
+            }
+        });
+        // const snapDataRef = snapshot.docs[0]
+       
+      })
+    }
   }
+
+  function handleGenSalt() {
+    // Bcrypt.genSalt(10, function (err, salt) {
+    //   if (err) {
+    //     setError(err);
+    //   }
+    //   else{
+    //     setSalt(salt);
+    //   }
+    //   Bcrypt.hash("B4c0//", salt, function (err, hash) {
+    //     if (err) {
+    //       setError(err);
+    //     } else {
+         
+    //       setHash(hash);
+    //     }
+    //   });
+    // });
+    // console.log(salt);
+    // console.log(hash)
+    let ciphertext=CryptoJS.AES.encrypt("this","that").toString();
+    console.log(ciphertext," -------cipher")
+    let plainpass=CryptoJS.AES.decrypt(ciphertext,"that")
+    console.log(plainpass," ---plainpassBytes")
+    let plainpassString = plainpass.toString(CryptoJS.enc.Utf8)
+    console.log(plainpassString," ---plainpassStrBytes")
+  }
+  
 
   function handleDelete(docId,userEmail) {
     if (currentUser) {
@@ -112,6 +203,7 @@ export default function Dashboard() {
   useEffect(() => {
     window.scrollTo(0,0)
     if (currentUser) {
+      
       const dbRef = getCollectionData(currentUser.uid);
       dbRef.onSnapshot((snapshot) => {
         setCoData(snapshot.docs);
@@ -210,10 +302,37 @@ export default function Dashboard() {
             </Col>
           </Row>
           <div className=" d-flex justify-content-center pt-3 pb-5">
-            <Button type="submit">Add user details</Button>
-            <Button variant="primary" onClick={handleGenSalt}>
+            {/* <Button type="submit">Add user details</Button> */}
+            {/* <Button variant="primary" onClick={handleGenSalt}>
           click
+        </Button> */}
+        <Button type="submit">Add user details</Button>
+            
+            {/* <Modal
+      show={showUserDetail}
+      onHide={handleUserDetailClose}
+      backdrop="static"
+      keyboard={false}
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>Enter profile password to encrypt user password</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Card>
+          <Card.Body>
+            <Form>
+              <Form.Control type="password" placeholder="Enter profile password here" value={profilePassRef} onChange={e=>setProfilePassRef(e.target.value)}/>
+            </Form>
+              <Button onClick={handleUserData}>Add user details</Button>
+          </Card.Body>
+        </Card>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleUserDetailClose}>
+          Close
         </Button>
+      </Modal.Footer>
+    </Modal> */}
           </div>
         </Form>
         {/* <Button onClick={handleGetData}>Get Data</Button> */}
@@ -343,6 +462,12 @@ export default function Dashboard() {
                       <div onClick={()=>handleDelete(item.id,dataItem.email)} className="pl-2">
                         <AiTwotoneDelete />
                       </div>
+                      </Col>
+                      <Col xs="0" className="m-0 pt-1">
+                      <div onClick={()=>decryptPass(index)} className="pl-2">
+                        <FaLock />
+                      </div>
+                      </Col>
                       {/* <Modal
                         show={delConfirmShow}
                         onHide={handleDelClose}
@@ -383,7 +508,7 @@ export default function Dashboard() {
                         
                         </Modal.Footer>
                       </Modal> */}
-                      </Col>
+                     
                       </Row>
                     
                     </Card.Body>
