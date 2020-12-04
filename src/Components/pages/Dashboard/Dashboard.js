@@ -163,39 +163,6 @@ export default function Dashboard() {
 
   return (
     <div style={{ minHeight: "100vh" }}>
-      <div style={{ float: "right", margin: "10px 10px 0px 0px" }}>
-        <Button variant="primary" onClick={handleShow}>
-          Profile
-        </Button>
-      </div>
-
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Profile</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Card>
-            <Card.Body>
-              {error && <Alert variant="danger">{error}</Alert>}
-              <strong>Email:</strong> {currentUser.email}
-              <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
-                Update Profile
-              </Link>
-            </Card.Body>
-          </Card>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
       <Container fluid style={{ paddingTop: "80px", maxWidth: "1200px" }}>
         <Form onSubmit={handleUserData} ref={valFormRef}>
           <Row>
