@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import { Form, Button, Card, Alert,Container } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext";
 import { useFirestore } from "../../context/FirebaseContext";
@@ -60,6 +60,10 @@ export default function Signup() {
       },
     });
   }
+
+useEffect(() => {
+  window.scrollTo(0,0)
+}, [])
 
   function validatePassword() {
     // has uppercase letter
