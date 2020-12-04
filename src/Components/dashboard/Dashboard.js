@@ -98,12 +98,14 @@ export default function Dashboard() {
     console.log(hash)
   }
 
-  function handleDelete(docId) {
+  function handleDelete(docId,userEmail) {
     if (currentUser) {
+      const deleteAccept = window.confirm(`are you sure you want to delete the user with the email ${userEmail}`)
+      if(deleteAccept){
       deleteCollectionData(currentUser.uid, docId).then(() =>
         console.log("delete complete")
-      );
-      handleDelClose();
+      );}
+      // handleDelClose();
     }
   }
 
@@ -338,22 +340,23 @@ export default function Dashboard() {
                       </div>
                     </Col>
                     <Col xs="0" className="m-0 pt-1">
-                      <div onClick={handleDelShow} className="pl-2">
+                      <div onClick={()=>handleDelete(item.id,dataItem.email)} className="pl-2">
                         <AiTwotoneDelete />
                       </div>
-                      <Modal
+                      {/* <Modal
                         show={delConfirmShow}
                         onHide={handleDelClose}
                         backdrop="static"
                         keyboard={false}
                       >
+                        {item.id}
                         <Modal.Header closeButton>
                           <Modal.Title>Delete Username/Password</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                           <Card>
                             <Card.Body>
-                              {/* <h2 className="text-center mb-4">Profile</h2> */}
+                              
                               <Alert variant="danger">
                                 Please note that this is permanent!
                               </Alert>
@@ -377,9 +380,9 @@ export default function Dashboard() {
                             Close
                           </Button>
 
-                          {/* <Button variant="primary" >Understood</Button> */}
+                        
                         </Modal.Footer>
-                      </Modal>
+                      </Modal> */}
                       </Col>
                       </Row>
                     
