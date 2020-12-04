@@ -37,7 +37,7 @@ export default function Signup() {
     ["A number (0-9)", containsN],
     ["A special character (!@#$)", containsSC],
     ["At least 8 characters", contains8C],
-    ["Passwords match", passwordMatch]
+    // ["Passwords match", passwordMatch]
   ]
 
   const history = useHistory();
