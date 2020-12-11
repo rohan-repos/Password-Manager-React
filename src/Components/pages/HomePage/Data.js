@@ -12,7 +12,7 @@ export const homeObjOne = {
     headline: 'Save all of your passwords with a peace of mind',
     description:
       "Say goodbye to unbearable password resets",
-    buttonLabel: 'Get Started',
+    buttonLabel: 'Get started',
     imgStart: '',
     img: 'images/svg-1.svg',
     alt: 'Credit Card',

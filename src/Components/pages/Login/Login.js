@@ -21,7 +21,7 @@ export default function Login() {
     try {
       setError("")
       setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
+      await login(emailRef.current.value, passwordRef.current.value)//Firebase login authentication
       history.push("/home")
     } catch {
       setError("Failed to log in")

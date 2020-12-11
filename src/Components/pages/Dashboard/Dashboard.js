@@ -45,8 +45,7 @@ export default function Dashboard() {
   const passwordRef = useRef();
   const valFormRef = useRef();
   const tablePassRef = useRef([]);
-  const [salt, setSalt] = useState("");
-  const [hash, setHash] = useState("");
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
